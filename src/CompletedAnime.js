@@ -62,17 +62,28 @@ class CompletedAnime extends React.Component{
           }
           else{
             return (
-              <div>
-                <button onClick={this.decrementPage}>Previous Page</button>
-                <button onClick={this.incrementPage}>Next Page</button>
-                <h1>Page: {this.state.animePage}</h1>
-           
-                {animeList.map((list) => (
-                  <div key={list.mal_id}>
-                    <a href={list.url} target="_blank"> {list.title} </a>
-                    <div><img src={list.image_url} /></div>
+              <div className="App">
+                {/* <div className="TopBar"></div>*/}
+                <div className="MainPage">
+                  <div className="Sidebar">
+                    <ul className="SidebarList">
+                      <h1 className="row" style={{color:"black"}} onClick={()=>{window.location.pathname = ""}}>Home</h1>
+                      <h2 className="row" style={{color:"black"}} onClick={()=>{window.location.pathname = "/completedanime"}}>Watched</h2>
+                    </ul>
                   </div>
-                ))}
+
+                {/* <div className="CompletedConatiner">
+                  <button onClick={this.decrementPage}>Previous Page</button>
+                  <button onClick={this.incrementPage}>Next Page</button>
+                  <h1>Page: {this.state.animePage}</h1>
+                  {animeList.map((list) => (
+                    <div key={list.mal_id}>
+                      <a href={list.url} target="_blank"> {list.title} </a>
+                      <div><img src={list.image_url} /></div>
+                    </div>
+                  ))}
+                </div> */}
+                </div>
               </div>
             )
           }

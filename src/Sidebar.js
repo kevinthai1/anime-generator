@@ -9,6 +9,7 @@ class Sidebar extends React.Component{
            animeList: [""],
            i: 0,
            page: 1,
+           showGenre: true,
            genre: 3, 
             /* 
             Action: 1
@@ -59,6 +60,8 @@ class Sidebar extends React.Component{
         this.loadanimePage = this.loadanimePage.bind(this)
         this.nextRandomAnime = this.nextRandomAnime.bind(this)
         this.getGenre = this.getGenre.bind(this)
+        this.changePage = this.changePage.bind(this)
+
     }
 
     componentDidMount(){
@@ -89,16 +92,6 @@ class Sidebar extends React.Component{
         })
     }
 
-    // getGenre(event){
-    //     const {value} = event.target
-    //     this.setState({
-    //       genre: value,
-    //       isLoading: false
-    //     })
-    //     setTimeout(() => {
-    //         this.loadanimePage()
-    //       }, 100)
-    // }
     getGenre(props){
         this.setState({
           genre: props,
@@ -109,8 +102,21 @@ class Sidebar extends React.Component{
           }, 100)
     }
 
+    toggleGenre(){
+      this.setState(prevState => ({
+        showGenre: !prevState.showGenre
+      }))
+    }
+
+    changePage(){
+      this.setState({
+        page: this.state.page + 1
+      })
+      this.loadanimePage()
+    }
+
     render(){
-        var {isLoading, animeList} = this.state
+        var {isLoading, animeList, i} = this.state
       
           if (!isLoading){    
             return(
@@ -125,57 +131,48 @@ class Sidebar extends React.Component{
                 {/* <div className="TopBar"></div>*/}
                 <div className="MainPage">
                   <div className="Sidebar">
-                      <ul className="SidebarList">
-                          <h1 className="row" style={{color:"black"}} onClick={() => {console.log("HI")}}>Genre</h1>
-                          {GenreData.map((val, key) => {
-                            return(
-                              // onClick={()=>{window.location.pathname = val.link}}
-                              <li 
-                                key={key} 
-                                classname="row" 
-                                id={val.value==this.state.genre ? "active" : ""}
-                                onClick={() => {this.getGenre(val.value)}}
-                              >
-                                <div className="row">
-                                  <div id="icon">{val.icon}</div>
-                                  <div id="genre">{val.genre}</div>
-                                </div>
-                              </li>
-                            )
-                          })}
-                      </ul>
-                      {/* <h3>Genre: 
-                      <select
-                      value={this.state.genre}
-                      onChange={this.getGenre}
-                      >
-                      <option value="1">Action</option>
-                      <option value="2">Adventure</option>
-                      <option value="3">Cars</option>
-                      <option value="4">Comedy</option>
-                      </select>
-                      </h3>
-                      {console.log(this.state.genre)} */}
+                    <ul className="SidebarList">
+                      <h1 className="row" style={{color:"black"}} onClick={()=>{window.location.pathname = ""}}>Home</h1>
+                      <h2 className="row" style={{color:"black"}} onClick={()=>{window.location.pathname = "/completedanime"}}>Watched</h2>
+                      <h2 className="row" style={{color:"black"}} onClick={()=>{this.toggleGenre()}}>Genre</h2>
+                      {this.state.showGenre ? GenreData.map((val, key) => {
+                        return(
+                          <li 
+                            key={key} 
+                            classname="row" 
+                            id={val.value===this.state.genre ? "active" : ""}
+                            onClick={() => {this.getGenre(val.value)}}
+                          >
+                            <div className="row">
+                              <div id="icon">{val.icon}</div>
+                              <div id="genre">{val.genre}</div>
+                            </div>
+                          </li>
+                        )
+                      }) : null}
+                    </ul>
                   </div>
 
                   <div className="Randomizer">
                     <div className="Buttons">
-                      <button onClick={this.loadanimePage}>
-                        Random Anime
+                      <button onClick={this.changePage}>
+                        Change Anime Page
                       </button>
-                      <button onClick={this.nextRandomAnime}>
+                      <button onClick={i < 99 ? this.nextRandomAnime : this.changePage}>
                         Next Random Anime
                       </button>
                     </div>
 
                     <div className="Container">
                       <div className="Image">
-                          <img src={this.state.animeList[this.state.i].image_url} />
+                          <img src={animeList[i].image_url} />
                       </div>
 
                       <div className="Info">
-                      <a href={this.state.animeList[this.state.i].url} target="_blank"> {this.state.animeList[this.state.i].title} </a>
-                      <h1>lsdkjf</h1>
+                      <h1><a href={animeList[i].url} target="_blank"> {animeList[i].title} </a></h1>
+                      <h3>Year: {animeList[i].airing_start[0]}{animeList[i].airing_start[1]}{animeList[i].airing_start[2]}{animeList[i].airing_start[3]}</h3>
+                      <h3>Episodes: {animeList[i].episodes}</h3>
+                      <h3>Synopsis: <p>{animeList[i].synopsis}</p></h3>
                       </div>
                     </div>                    
                   </div>
