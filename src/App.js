@@ -11,7 +11,7 @@ class App extends React.Component{
       return (
         <Router>
           <Switch>
-          <Route exact path="/" component={Sidebar} />
+          <Route exact path="https://kthai1.github.io/anime-generator/" component={Sidebar} />
           <Route exact path="/completedanime" component={CompletedAnime} />
           <Route exact path="/404"  component={NotFoundPage} />
           <Redirect to="/404" /> {/* Has to be last */}
