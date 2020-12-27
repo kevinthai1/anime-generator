@@ -1,5 +1,6 @@
 import React from 'react'
 import {GenreData} from './GenreData'
+import { NavLink } from "react-router-dom"
 
 class Sidebar extends React.Component{
 
@@ -132,8 +133,10 @@ class Sidebar extends React.Component{
                 <div className="MainPage">
                   <div className="Sidebar">
                     <ul className="SidebarList">
-                      <h1 className="row" style={{color:"black"}} onClick={()=>{window.location.pathname = "/anime-generator"}}>Home</h1>
-                      <h2 className="row" style={{color:"black"}} onClick={()=>{window.location.pathname = "/completedanime"}}>Watched</h2>
+                      {/* <h1 className="row" style={{color:"black"}} onClick={()=>{window.location.pathname = "/anime-generator"}}>Home</h1>
+                      <h2 className="row" style={{color:"black"}} onClick={()=>{window.location.pathname = "/anime-generator/completedanimep"}}>Watched</h2> */}
+                      <h1 className="row" style={{color:"black"}}> <NavLink className="NavLink" to="/">Home</NavLink></h1>
+                      <h2 className="row" style={{color:"black"}}> <NavLink className="NavLink" to="/completedanime">Watched</NavLink> </h2>
                       <h2 className="row" style={{color:"black"}} onClick={()=>{this.toggleGenre()}}>Genre</h2>
                       {this.state.showGenre ? GenreData.map((val, key) => {
                         return(
