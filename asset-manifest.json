@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/anime-generator/static/css/main.af324ab5.chunk.css",
-    "main.js": "/anime-generator/static/js/main.b5c6df5f.chunk.js",
-    "main.js.map": "/anime-generator/static/js/main.b5c6df5f.chunk.js.map",
+    "main.js": "/anime-generator/static/js/main.52d48b02.chunk.js",
+    "main.js.map": "/anime-generator/static/js/main.52d48b02.chunk.js.map",
     "runtime-main.js": "/anime-generator/static/js/runtime-main.a74ba962.js",
     "runtime-main.js.map": "/anime-generator/static/js/runtime-main.a74ba962.js.map",
     "static/js/2.e9386566.chunk.js": "/anime-generator/static/js/2.e9386566.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.a74ba962.js",
     "static/js/2.e9386566.chunk.js",
     "static/css/main.af324ab5.chunk.css",
-    "static/js/main.b5c6df5f.chunk.js"
+    "static/js/main.52d48b02.chunk.js"
   ]
 }
