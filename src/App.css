@@ -1,6 +1,8 @@
 .App{
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    
+    
 }
 
 body{
@@ -8,20 +10,34 @@ body{
     padding: 0;
 }
 
-.CompletedPage{
+.MainPage{
     width: 100vw;
-    height: 100vh;
+    min-height: 100%;
     display: flex;
     flex-direction: row;
+    border: 3px solid blue;
+    
+    
+}
+
+.CompletedPage{
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    
+
 }
 
 .Randomizer{
-    height: auto;
+    height: 100vh;
     width: 100vw;
-    background-color: #aec6e2;
-    /* background-color: #ebdeb1; */
+    
+    background: #aec6e2;
+    /* background-color: white; */
     text-align: center;
-
+    border: 3px solid green;
+    
 }
 
 .Buttons{
@@ -32,10 +48,13 @@ body{
     display: flex;
     flex-direction: row;
     width: 70vw;
+    min-height: 100%;
     position: absolute;
     left: 20%;
     top: 15%;
-    /* border: 3px solid greenyellow; */
+    border: 3px solid greenyellow;
+    
+
 }
 
 .Image{
@@ -50,13 +69,6 @@ body{
     padding-left: 50px;
 }
 
-.MainPage{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-}
-
 .TopBar{
     /* width: 100%;
     height: 45px;
@@ -67,7 +79,8 @@ body{
     height: 100vh;
     width: 220px;
     display: flex;
-    overflow: auto;
+    
+    position: fixed;
     background-color: #2f4050;
 }
 

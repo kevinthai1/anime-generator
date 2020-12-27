@@ -10,7 +10,7 @@ class Sidebar extends React.Component{
            i: 0,
            page: 1,
            showGenre: true,
-           genre: 3, 
+           genre: 1, 
             /* 
             Action: 1
             Adventure: 2
