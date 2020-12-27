@@ -132,7 +132,7 @@ class Sidebar extends React.Component{
                 <div className="MainPage">
                   <div className="Sidebar">
                     <ul className="SidebarList">
-                      <h1 className="row" style={{color:"black"}} onClick={()=>{window.location.pathname = ""}}>Home</h1>
+                      <h1 className="row" style={{color:"black"}} onClick={()=>{window.location.pathname = "/anime-generator"}}>Home</h1>
                       <h2 className="row" style={{color:"black"}} onClick={()=>{window.location.pathname = "/completedanime"}}>Watched</h2>
                       <h2 className="row" style={{color:"black"}} onClick={()=>{this.toggleGenre()}}>Genre</h2>
                       {this.state.showGenre ? GenreData.map((val, key) => {
