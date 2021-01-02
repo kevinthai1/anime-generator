@@ -11,6 +11,7 @@ class Sidebar extends React.Component{
            i: 0,
            page: 1,
            showGenre: true,
+           watchList: [],
            genre: 1, 
             /* 
             Action: 1
@@ -62,7 +63,7 @@ class Sidebar extends React.Component{
         this.nextRandomAnime = this.nextRandomAnime.bind(this)
         this.getGenre = this.getGenre.bind(this)
         this.changePage = this.changePage.bind(this)
-
+        this.watchedAnime = this.watchedAnime.bind(this)
     }
 
     componentDidMount(){
@@ -116,6 +117,14 @@ class Sidebar extends React.Component{
       this.loadanimePage()
     }
 
+    watchedAnime(){
+      // this.setState({
+      //   watchList: this.state.animeList[this.state.i]
+      // })
+      this.state.watchList.push(this.state.animeList[this.state.i])
+      this.nextRandomAnime()
+    }
+
     render(){
         var {isLoading, animeList, i} = this.state
       
@@ -136,7 +145,7 @@ class Sidebar extends React.Component{
                       {/* <h1 className="row" style={{color:"black"}} onClick={()=>{window.location.pathname = "/anime-generator"}}>Home</h1>
                       <h2 className="row" style={{color:"black"}} onClick={()=>{window.location.pathname = "/anime-generator/completedanimep"}}>Watched</h2> */}
                       <h1 className="row" style={{color:"black"}}> <NavLink className="NavLink" to="/">Home</NavLink></h1>
-                      <h2 className="row" style={{color:"black"}}> <NavLink className="NavLink" to="/completedanime">Watched</NavLink> </h2>
+                      <h2 className="row" style={{color:"black"}}> <NavLink className="NavLink" to={{ pathname:"/completedanime", state:{listcomplete:this.state.watchList}}}>Watched</NavLink> </h2>
                       <h2 className="row" style={{color:"black"}} onClick={()=>{this.toggleGenre()}}>Genre</h2>
                       {this.state.showGenre ? GenreData.map((val, key) => {
                         return(
@@ -158,8 +167,8 @@ class Sidebar extends React.Component{
 
                   <div className="Randomizer">
                     <div className="Buttons">
-                      <button onClick={this.changePage}>
-                        Change Anime Page
+                      <button onClick={this.watchedAnime}>
+                        Watched
                       </button>
                       <button onClick={i < 99 ? this.nextRandomAnime : this.changePage}>
                         Next Random Anime

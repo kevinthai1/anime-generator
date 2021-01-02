@@ -16,8 +16,22 @@ class CompletedAnime extends React.Component{
       
       componentDidMount(){
         this.loadanimePage()
+        if (this.props.location.state != null){
+          
+        }
       }
-      
+
+      loadWatchedAnime(){
+        console.log(this.props.location.state)
+        this.setState({animeList: this.props.location.state})
+        this.state.animeList.map((list) => (
+          <div key={list.mal_id}>
+            <a href={list.url} target="_blank"> {list.title} </a>
+            <div><img src={list.image_url} /></div>
+          </div>
+        ))
+      }
+
       incrementPage(){
         this.setState({animePage: this.state.animePage + 1})
         setTimeout(() => {
@@ -51,7 +65,7 @@ class CompletedAnime extends React.Component{
         })
       }
       
-        render(){
+        render(props){
           var {isLoading, animeList} = this.state
       
           if (!isLoading){    
@@ -74,18 +88,17 @@ class CompletedAnime extends React.Component{
                       <h2 className="row" style={{color:"black"}}> <NavLink className="NavLink" to="/completedanime">Watched</NavLink> </h2>
                     </ul>
                   </div>
-
-                {/* <div className="CompletedConatiner">
-                  <button onClick={this.decrementPage}>Previous Page</button>
+                <div className="Randomizer">
+                  {/* <button onClick={this.decrementPage}>Previous Page</button>
                   <button onClick={this.incrementPage}>Next Page</button>
-                  <h1>Page: {this.state.animePage}</h1>
-                  {animeList.map((list) => (
+                  <h1>Page: {this.state.animePage}</h1> */}
+                  {this.props.location.state.listcomplete.map((list) => (
                     <div key={list.mal_id}>
                       <a href={list.url} target="_blank"> {list.title} </a>
                       <div><img src={list.image_url} /></div>
                     </div>
                   ))}
-                </div> */}
+                </div>
                 </div>
               </div>
             )
