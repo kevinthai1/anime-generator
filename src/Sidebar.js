@@ -10,7 +10,7 @@ class Sidebar extends React.Component{
            animeList: [""],
            i: 0,
            page: 1,
-           showGenre: true,
+           showSidebar: true,
            watchList: [],
            genre: 1, 
             /* 
@@ -103,9 +103,9 @@ class Sidebar extends React.Component{
         }, 100)
     }
 
-    toggleGenre(){
+    toggleSidebar(){
       this.setState(prevState => ({
-        showGenre: !prevState.showGenre
+        showSidebar: !prevState.showSidebar
       }))
     }
 
@@ -139,16 +139,20 @@ class Sidebar extends React.Component{
           else{
             return(
               <div className="App">
-                {/* <div className="TopBar"></div>*/}
+                <div className="TopBar">
+                  <button onClick={()=>{this.toggleSidebar()}}>Sidebar</button>
+                </div>
+
                 <div className="MainPage">
+                  {this.state.showSidebar ? 
                   <div className="Sidebar">
                     <ul className="SidebarList">
                       {/* <h1 className="row" style={{color:"black"}} onClick={()=>{window.location.pathname = "/anime-generator"}}>Home</h1>
                       <h2 className="row" style={{color:"black"}} onClick={()=>{window.location.pathname = "/anime-generator/completedanimep"}}>Watched</h2> */}
                       <h1 className="row" style={{color:"black"}}> <NavLink className="NavLink" to="/">Home</NavLink></h1>
                       <h2 className="row" style={{color:"black"}}> <NavLink className="NavLink" to={{ pathname:"/completedanime", state:{listcomplete:this.state.watchList}}}>Watched</NavLink> </h2>
-                      <h2 className="row" style={{color:"black"}} onClick={()=>{this.toggleGenre()}}>Genre</h2>
-                      {this.state.showGenre ? GenreData.map((val, key) => {
+                      <h2 className="row" style={{color:"black"}}>Genre</h2>
+                      {GenreData.map((val, key) => {
                         return(
                           <li 
                             key={key} 
@@ -162,9 +166,9 @@ class Sidebar extends React.Component{
                             </div>
                           </li>
                         )
-                      }) : null}
+                      })}
                     </ul>
-                  </div>
+                  </div> : null}
 
                   <div className="Randomizer">
                     <div className="Buttons">
