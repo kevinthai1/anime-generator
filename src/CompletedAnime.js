@@ -5,68 +5,18 @@ class CompletedAnime extends React.Component{
     constructor(){
         super()
         this.state = {
-          animeList: [""],
-          isLoading: true,
-          animePage: 1,
+          isLoading: true
         }
-        this.loadanimePage = this.loadanimePage.bind(this)
-        this.incrementPage = this.incrementPage.bind(this)
-        this.decrementPage = this.decrementPage.bind(this)
       }
       
       componentDidMount(){
-        this.loadanimePage()
         if (this.props.location.state != null){
 
         }
       }
-
-      loadWatchedAnime(){
-        console.log(this.props.location.state)
-        this.setState({animeList: this.props.location.state})
-        this.state.animeList.map((list) => (
-          <div key={list.mal_id}>
-            <a href={list.url} target="_blank"> {list.title} </a>
-            <div><img src={list.image_url} /></div>
-          </div>
-        ))
-      }
-
-      incrementPage(){
-        this.setState({animePage: this.state.animePage + 1})
-        setTimeout(() => {
-          this.loadanimePage()
-        }, 100)
-      }
-      
-      decrementPage(){
-        this.setState({animePage: this.state.animePage - 1})
-        setTimeout(() => {
-          this.loadanimePage()
-        }, 100)
-      }
-      
-      loadanimePage(){  
-        this.setState({isLoading: false})
-        fetch("https://jikan1.p.rapidapi.com/genre/anime/1/" + this.state.animePage, {
-          "method": "GET",
-          "headers": {
-            "x-rapidapi-key": "542c3ca589msh41c910fdd2fb3e6p174e03jsnb59816e25977",
-            "x-rapidapi-host": "jikan1.p.rapidapi.com"
-          }
-        })
-        .then(res => res.json())
-        .then(json => {
-          this.setState({
-            animeList: json.anime,
-            isLoading: true
-          })
-            console.log(this.state.animeList)
-        })
-      }
       
         render(props){
-          var {isLoading, animeList} = this.state
+          var {isLoading} = this.state
       
           if (!isLoading){    
             return(
@@ -77,6 +27,7 @@ class CompletedAnime extends React.Component{
           }
           else{
             var watchedList = JSON.parse(sessionStorage.getItem('mySessionStorage') || '[]');
+            
             return (
               <div className="App">
                 {/* <div className="TopBar"></div>*/}
@@ -90,9 +41,6 @@ class CompletedAnime extends React.Component{
                     </ul>
                   </div>
                 <div className="Randomizer">
-                  {/* <button onClick={this.decrementPage}>Previous Page</button>
-                  <button onClick={this.incrementPage}>Next Page</button>
-                  <h1>Page: {this.state.animePage}</h1> */}
                   {/* {this.props.location.state.listcomplete.map((list) => ( */}
                   {watchedList.map((list) => (
                     <div key={list.mal_id}>

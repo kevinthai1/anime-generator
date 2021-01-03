@@ -1,5 +1,5 @@
 import React from 'react'
-import {GenreData} from './GenreData'
+import { GenreData } from './GenreData'
 import { NavLink } from "react-router-dom"
 
 class Sidebar extends React.Component{
@@ -84,7 +84,6 @@ class Sidebar extends React.Component{
             animeList: json.anime,
             isLoading: true
           })
-            console.log(this.state.animeList[this.state.i])
         })
       }
 
@@ -101,7 +100,7 @@ class Sidebar extends React.Component{
         })
         setTimeout(() => {
             this.loadanimePage()
-          }, 100)
+        }, 100)
     }
 
     toggleGenre(){
