@@ -17,7 +17,7 @@ class CompletedAnime extends React.Component{
       componentDidMount(){
         this.loadanimePage()
         if (this.props.location.state != null){
-          
+
         }
       }
 
@@ -76,6 +76,7 @@ class CompletedAnime extends React.Component{
             )
           }
           else{
+            var watchedList = JSON.parse(sessionStorage.getItem('mySessionStorage') || '[]');
             return (
               <div className="App">
                 {/* <div className="TopBar"></div>*/}
@@ -92,7 +93,8 @@ class CompletedAnime extends React.Component{
                   {/* <button onClick={this.decrementPage}>Previous Page</button>
                   <button onClick={this.incrementPage}>Next Page</button>
                   <h1>Page: {this.state.animePage}</h1> */}
-                  {this.props.location.state.listcomplete.map((list) => (
+                  {/* {this.props.location.state.listcomplete.map((list) => ( */}
+                  {watchedList.map((list) => (
                     <div key={list.mal_id}>
                       <a href={list.url} target="_blank"> {list.title} </a>
                       <div><img src={list.image_url} /></div>

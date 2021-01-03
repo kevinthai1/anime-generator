@@ -118,10 +118,12 @@ class Sidebar extends React.Component{
     }
 
     watchedAnime(){
-      // this.setState({
-      //   watchList: this.state.animeList[this.state.i]
-      // })
+      //Adds anime to watchlist using session storage
+      const temp = JSON.parse(sessionStorage.getItem('mySessionStorage') || '[]')
+      temp.push(this.state.animeList[this.state.i])
       this.state.watchList.push(this.state.animeList[this.state.i])
+      sessionStorage.setItem('mySessionStorage', JSON.stringify(temp))
+
       this.nextRandomAnime()
     }
 
