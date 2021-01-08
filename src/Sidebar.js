@@ -113,7 +113,7 @@ class Sidebar extends React.Component{
       this.setState({
         page: this.state.page + 1
       })
-      this.loadanimePage()
+      //this.loadanimePage()
     }
 
     watchedAnime(){
@@ -124,6 +124,31 @@ class Sidebar extends React.Component{
       sessionStorage.setItem('mySessionStorage', JSON.stringify(temp))
 
       this.nextRandomAnime()
+    }
+
+    displayAnime(){
+      var {animeList, i} = this.state
+      const watched = JSON.parse(sessionStorage.getItem('mySessionStorage') || '[]')
+      
+      for(var j = 0; j < watched.length; j++){
+        if(animeList[i].mal_id == watched[j].mal_id){     
+          this.nextRandomAnime()  
+        }
+      }
+      
+      return(
+        <div className="Container">
+          <div className="Image">
+            <img src={animeList[i].image_url} />
+          </div>
+          <div className="Info">
+            <h1><a href={animeList[i].url} target="_blank"> {animeList[i].title} </a></h1>
+            <h3>Year: {animeList[i].airing_start[0]}{animeList[i].airing_start[1]}{animeList[i].airing_start[2]}{animeList[i].airing_start[3]}</h3>
+            <h3>Episodes: {animeList[i].episodes}</h3>
+            <h3>Synopsis: <p>{animeList[i].synopsis}</p></h3>
+          </div>
+        </div>  
+      )
     }
 
     render(){
@@ -180,18 +205,7 @@ class Sidebar extends React.Component{
                       </button>
                     </div>
 
-                    <div className="Container">
-                      <div className="Image">
-                          <img src={animeList[i].image_url} />
-                      </div>
-
-                      <div className="Info">
-                      <h1><a href={animeList[i].url} target="_blank"> {animeList[i].title} </a></h1>
-                      <h3>Year: {animeList[i].airing_start[0]}{animeList[i].airing_start[1]}{animeList[i].airing_start[2]}{animeList[i].airing_start[3]}</h3>
-                      <h3>Episodes: {animeList[i].episodes}</h3>
-                      <h3>Synopsis: <p>{animeList[i].synopsis}</p></h3>
-                      </div>
-                    </div>                    
+                    {this.displayAnime()}
                   </div>
                 </div>         
               </div>
