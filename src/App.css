@@ -17,7 +17,6 @@ body{
     display: flex;
     flex-direction: row;
     /* border: 3px solid blue; */
-    background-color: #aec6e2;
 }
 
 .CompletedPage{
@@ -33,11 +32,14 @@ body{
     width: 100vw;
     background: #aec6e2;
     text-align: center;
+    margin: 70px;
+    padding-left: 15%;
     /* border: 3px solid green; */
     
 }
 
 .Buttons{
+    padding-bottom: 5%;
     /* border: 3px solid yellow; */
 }
 
@@ -45,15 +47,28 @@ body{
     display: flex;
     flex-direction: row;
     width: 70vw;
-    position: absolute;
+    /* position: absolute;
     left: 20%;
-    top: 15%;
+    top: 15%; */
     /* border: 3px solid greenyellow; */
-    
+}
+
+@media only screen and (max-width: 600px){
+    .Container{
+        display: flex;
+        flex-direction: column;  
+    }
+    .Randomizer{
+        padding-left: 0%;
+    }
 }
 
 .Image{
- 
+    
+}
+
+.Image:hover{
+    
 }
 
 .Info{
@@ -66,8 +81,9 @@ body{
 
 .TopBar{
     width: 100%;
-    height: 45px;
-    background-color: red;
+    height: 5%;   
+    position: fixed;
+    background-color: #252525;
 }
 
 .Sidebar{
@@ -75,9 +91,11 @@ body{
     width: 220px;
     display: flex;
     position: fixed;
+    top: 5%;
     background-color: #2f4050;
     overflow: scroll;
-
+    animation-name: fade-in;
+    animation-duration: 1s;
 }
 
 .NavLink{
@@ -121,5 +139,10 @@ body{
 
 .row #genre{
     flex: 70%;
+}
+
+@keyframes fade-in{
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
 

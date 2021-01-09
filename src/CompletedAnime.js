@@ -1,11 +1,15 @@
 import React from "react"
 import {NavLink} from "react-router-dom"
+import ReorderIcon from '@material-ui/icons/Reorder'
+import HomeIcon from '@material-ui/icons/Home'
+import CheckIcon from '@material-ui/icons/Check'
 
 class CompletedAnime extends React.Component{
     constructor(){
         super()
         this.state = {
-          isLoading: true
+          isLoading: true,
+          showSidebar: false
         }
       }
       
@@ -13,6 +17,12 @@ class CompletedAnime extends React.Component{
         if (this.props.location.state != null){
 
         }
+      }
+
+      toggleSidebar(){
+        this.setState(prevState => ({
+          showSidebar: !prevState.showSidebar
+        }))
       }
       
         render(props){
@@ -30,16 +40,22 @@ class CompletedAnime extends React.Component{
             
             return (
               <div className="App">
-                {/* <div className="TopBar"></div>*/}
+                <div className="TopBar">
+                  <ReorderIcon onClick={()=>{this.toggleSidebar()}} style={{fontSize:"40px"}}>Sidebar</ReorderIcon>
+                  <NavLink className="NavLink" to="/"><HomeIcon style={{fontSize:"40px"}}></HomeIcon></NavLink>
+                  <NavLink className="NavLink" to={{ pathname:"/completedanime", state:{listcomplete:this.state.watchList}}}><CheckIcon style={{fontSize:"40px"}}></CheckIcon></NavLink>
+                </div>
+
                 <div className="MainPage">
+
+                {this.state.showSidebar ?
                   <div className="Sidebar">
                     <ul className="SidebarList">
                       {/* <h1 className="row" style={{color:"black"}} onClick={()=>{window.location.pathname = "/anime-generator"}}>Home</h1>
                       <h2 className="row" style={{color:"black"}} onClick={()=>{window.location.pathname = "/anime-generator/completedanimep"}}>Watched</h2> */}
-                      <h1 className="row" style={{color:"black"}}> <NavLink className="NavLink" to="/">Home</NavLink></h1>
-                      <h2 className="row" style={{color:"black"}}> <NavLink className="NavLink" to="/completedanime">Watched</NavLink> </h2>
                     </ul>
-                  </div>
+                  </div>: null}
+
                 <div className="Randomizer">
                   {/* {this.props.location.state.listcomplete.map((list) => ( */}
                   {watchedList.map((list) => (
