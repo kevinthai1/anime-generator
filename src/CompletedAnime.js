@@ -67,13 +67,15 @@ class CompletedAnime extends React.Component{
                     </ul>
                   </div>: null}
 
-                <div className="Randomizer">
+                <div className="Watched">
                   {/* {this.props.location.state.listcomplete.map((list) => ( */}
                   {watchedList.map((list, index) => (
-                    <div key={list.mal_id}>
-                      <CloseIcon onClick={()=>{this.removeAnime(list.mal_id, index)}}></CloseIcon>
-                      <a style={{textDecoration:"none"}} href={list.url} target="_blank"> {list.title} </a>
-                      <div><img src={list.image_url} /></div>
+                    <div className="WatchedAnime" key={list.mal_id}>
+                      
+                        <CloseIcon onClick={()=>{this.removeAnime(list.mal_id, index)}}></CloseIcon>
+                        <a style={{textDecoration:"none"}} href={list.url} target="_blank"> {list.title} </a>
+                        <div className="AnimeImage"><img src={list.image_url} /></div>
+                       
                     </div>
                   ))}
                 </div>
