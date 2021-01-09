@@ -121,17 +121,17 @@ class Sidebar extends React.Component{
 
     watchedAnime(){
       //Adds anime to watchlist using session storage
-      const temp = JSON.parse(sessionStorage.getItem('mySessionStorage') || '[]')
+      const temp = JSON.parse(localStorage.getItem('mylocalStorage') || '[]')
       temp.push(this.state.animeList[this.state.i])
       this.state.watchList.push(this.state.animeList[this.state.i])
-      sessionStorage.setItem('mySessionStorage', JSON.stringify(temp))
+      localStorage.setItem('mylocalStorage', JSON.stringify(temp))
 
       this.nextRandomAnime()
     }
 
     displayAnime(){
       var {animeList, i} = this.state
-      const watched = JSON.parse(sessionStorage.getItem('mySessionStorage') || '[]')
+      const watched = JSON.parse(localStorage.getItem('mylocalStorage') || '[]')
       
       for(var j = 0; j < watched.length; j++){
         if(animeList[i].mal_id == watched[j].mal_id){     
@@ -145,7 +145,7 @@ class Sidebar extends React.Component{
             <img src={animeList[i].image_url} />
           </div>
           <div className="Info">
-            <h1><a href={animeList[i].url} target="_blank"> {animeList[i].title} </a></h1>
+            <h1><a style={{textDecoration:"none", color:"blue"}} href={animeList[i].url} target="_blank"> {animeList[i].title} </a></h1>
             <h3>Year: {animeList[i].airing_start[0]}{animeList[i].airing_start[1]}{animeList[i].airing_start[2]}{animeList[i].airing_start[3]}</h3>
             <h3>Episodes: {animeList[i].episodes}</h3>
             <h3>Synopsis: <p>{animeList[i].synopsis}</p></h3>
