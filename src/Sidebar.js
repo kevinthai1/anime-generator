@@ -99,7 +99,8 @@ class Sidebar extends React.Component{
     getGenre(props){
         this.setState({
           genre: props,
-          isLoading: false
+          isLoading: false,
+          i: 0
         })
         setTimeout(() => {
             this.loadanimePage()
@@ -132,7 +133,7 @@ class Sidebar extends React.Component{
     displayAnime(){
       var {animeList, i} = this.state
       const watched = JSON.parse(localStorage.getItem('mylocalStorage') || '[]')
-      
+
       for(var j = 0; j < watched.length; j++){
         if(animeList[i].mal_id == watched[j].mal_id){     
           this.nextRandomAnime()  
