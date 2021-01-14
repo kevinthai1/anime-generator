@@ -2,6 +2,8 @@
  Generates random animes to watch based on genre
  
  API: https://rapidapi.com/theapiguy/api/jikan1
+ 
+ Icons: https://material-ui.com/components/material-icons/
 
  Website: https://kthai1.github.io/anime-generator/#/
  
