@@ -39,7 +39,8 @@ body{
 }
 
 .Buttons{
-    padding-bottom: 5%;
+    padding-bottom: 20px;
+    display: flex;
     /* border: 3px solid yellow; */
 }
 

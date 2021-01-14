@@ -67,6 +67,7 @@ class Sidebar extends React.Component{
         this.getGenre = this.getGenre.bind(this)
         this.changePage = this.changePage.bind(this)
         this.watchedAnime = this.watchedAnime.bind(this)
+        this.shuffleArray = this.shuffleArray.bind(this)
     }
 
     componentDidMount(){
@@ -88,7 +89,8 @@ class Sidebar extends React.Component{
             isLoading: true
           })
         })
-      }
+        console.log(this.state.animeList)
+    }
 
     nextRandomAnime(){
         this.setState({
@@ -155,6 +157,17 @@ class Sidebar extends React.Component{
       )
     }
 
+    shuffleArray(){
+      //https://medium.com/@nitinpatel_20236/how-to-shuffle-correctly-shuffle-an-array-in-javascript-15ea3f84bfb
+      var {animeList, i} = this.state
+      for(let i = animeList.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * i)
+        const temp = animeList[i]
+        animeList[i] = animeList[j]
+        animeList[j] = temp
+      }
+    }
+
     render(){
         var {isLoading, animeList, i} = this.state
       
@@ -169,7 +182,7 @@ class Sidebar extends React.Component{
             return(
               <div className="App">
                 <div className="TopBar">
-                  <ReorderIcon onClick={()=>{this.toggleSidebar()}} style={{fontSize:"40px"}}>Sidebar</ReorderIcon>
+                  <ReorderIcon onClick={()=>{this.toggleSidebar()}} style={{fontSize:"40px", cursor: 'pointer'}}>Sidebar</ReorderIcon>
                   <NavLink className="NavLink" to="/"><HomeIcon style={{fontSize:"40px"}}></HomeIcon></NavLink>
                   <NavLink className="NavLink" to={{ pathname:"/completedanime", state:{listcomplete:this.state.watchList}}}><CheckIcon style={{fontSize:"40px"}}></CheckIcon></NavLink>
                 </div>
@@ -203,14 +216,15 @@ class Sidebar extends React.Component{
 
                   <div className="Randomizer">
                     <div className="Buttons">
-                      <button onClick={this.watchedAnime} style={{margin:"1%"}}>
+                      <button onClick={this.watchedAnime} style={{margin:"5px"}}>
                         Watched
                       </button>
-                      <button onClick={i < 99 ? this.nextRandomAnime : this.changePage}>
+                      <button onClick={i < 99 ? this.nextRandomAnime : this.changePage} style={{margin:"5px"}}>
                         Next Random Anime
                       </button>
                     </div>
 
+                    {this.shuffleArray()}
                     {this.displayAnime()}
                   </div>
                 </div>         
