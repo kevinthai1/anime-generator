@@ -220,11 +220,11 @@ class Sidebar extends React.Component{
                         Watched
                       </button>
                       <button onClick={i < 99 ? this.nextRandomAnime : this.changePage} style={{margin:"5px"}}>
-                        Next Random Anime
+                        Next Anime
                       </button>
                     </div>
 
-                    {this.shuffleArray()}
+                    {/* {this.shuffleArray()} */}
                     {this.displayAnime()}
                   </div>
                 </div>         
