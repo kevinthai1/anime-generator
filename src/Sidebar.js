@@ -225,7 +225,7 @@ class Sidebar extends React.Component{
                       </button>
                     </div>
                     
-                    {/* {this.shuffleArray()} */}
+                    {/* {this.shuffleArray()} dd*/}
                     {this.displayAnime()}
                     {console.log(animeList)}
                   </div>
