@@ -13,7 +13,8 @@ class Sidebar extends React.Component{
            animeList: [""],
            i: 0,
            page: 1,
-           showSidebar: true,
+           isLoading: false,
+           showSidebar: false,
            watchList: [],
            genre: 1, 
             /* 
@@ -88,8 +89,8 @@ class Sidebar extends React.Component{
             animeList: json.anime,
             isLoading: true
           })
+          {this.shuffleArray()}
         })
-        console.log(this.state.animeList)
     }
 
     nextRandomAnime(){
@@ -149,7 +150,7 @@ class Sidebar extends React.Component{
           </div>
           <div className="Info">
             <h1><a style={{textDecoration:"none", color:"blue"}} href={animeList[i].url} target="_blank"> {animeList[i].title} </a></h1>
-            <h3>Year: {animeList[i].airing_start[0]}{animeList[i].airing_start[1]}{animeList[i].airing_start[2]}{animeList[i].airing_start[3]}</h3>
+            {/* <h3>Year: {animeList[i].airing_start[0]}{animeList[i].airing_start[1]}{animeList[i].airing_start[2]}{animeList[i].airing_start[3]}</h3> */}
             <h3>Episodes: {animeList[i].episodes}</h3>
             <h3>Synopsis: <p>{animeList[i].synopsis}</p></h3>
           </div>
@@ -223,9 +224,9 @@ class Sidebar extends React.Component{
                         Next Random Anime
                       </button>
                     </div>
-
-                    {this.shuffleArray()}
+                 
                     {this.displayAnime()}
+                    {console.log(animeList)}
                   </div>
                 </div>         
               </div>
